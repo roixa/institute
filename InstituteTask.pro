@@ -19,13 +19,15 @@ SOURCES += main.cpp\
     datamanager.cpp \
     gaussfunc.cpp \
     perceptron.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    calculator.cpp
 
 HEADERS  += mainwindow.h \
     fileparser.h \
     datamanager.h \
     gaussfunc.h \
     perceptron.h \
-    qcustomplot.h
+    qcustomplot.h \
+    calculator.h
 
 FORMS    += mainwindow.ui

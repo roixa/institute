@@ -21,9 +21,18 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_loadFileButton_clicked();
+
+    void on_buildButton_clicked();
+
 private:
+    QString fileName;
     void drawPlot();
     void drawAppox();
+    void fillApproxIntervalsOnSpinboxes();
+    void readApproxIntervalsFromSpinboxes();
+    void showConsist(QVector<GaussFunc> funcs);
+
     DataManager mainManager;
     Ui::MainWindow *ui;
 };
