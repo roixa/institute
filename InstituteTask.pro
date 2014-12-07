@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     gaussfunc.cpp \
     perceptron.cpp \
     qcustomplot.cpp \
-    calculator.cpp
+    calculator.cpp \
+    rangescreator.cpp \
+    navigator.cpp \
+    pagebutton.cpp
 
 HEADERS  += mainwindow.h \
     fileparser.h \
@@ -28,6 +31,9 @@ HEADERS  += mainwindow.h \
     gaussfunc.h \
     perceptron.h \
     qcustomplot.h \
-    calculator.h
+    calculator.h \
+    rangescreator.h \
+    navigator.h \
+    pagebutton.h
 
 FORMS    += mainwindow.ui

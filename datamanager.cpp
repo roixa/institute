@@ -5,10 +5,7 @@ DataManager::DataManager()
 }
 
 QVector<QPointF> DataManager::getExperimentalData(){
-    if(experimentalData.size()==0){
-       experimentalData=
-               parser.parseFile("ll");
-    }
+
     return experimentalData;
 }
 
@@ -26,17 +23,12 @@ QVector<GaussFunc> DataManager::buildGaussApprox(){
     for(int i=0;i<approxIntervals.size();i++){
         QPointF interval=approxIntervals[i];
         QPointF max=maxValue(interval);
-
-
         QVector<QPointF> expirementalValues=experimentalDataFromInterval(interval);
-
         GaussFunc add=varyApprox(expirementalValues,70,QPointF(0,1));
-
-
         ret.append(add);
     }
+    gaussApproxes=ret;
     calc.makeConsistInPercent(ret,16,0,true);
-
     return ret;
 }
 
@@ -127,3 +119,13 @@ QVector <QPointF> DataManager::buildTeoriticalDataGaussFunc(QVector<QPointF> exp
     return ret;
 
 }
+
+void DataManager::createNewPage(){
+    navigator.savePage(gaussApproxes,experimentalData);
+
+}
+void DataManager::setPage(int page){
+    gaussApproxes=navigator.getApproxData(page);
+    experimentalData=navigator.getExpData(page);
+}
+

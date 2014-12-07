@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "pagebutton.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::drawPlot(){
 
 
-    QVector<QPointF> experimentalPoints=mainManager.getExperimentalData(fileName);
+    QVector<QPointF> experimentalPoints=mainManager.getExperimentalData();
     QCustomPlot *customPlot=ui->widget;
     QVector<double> x, y;
     for (int i=0; i<experimentalPoints.size(); i++)
@@ -68,6 +69,25 @@ void MainWindow::drawAppox(){
 
 
     customPlot->replot();
+}
+
+void MainWindow::drawPageButton(){
+    int i=mainManager.navigator.getPageCount();
+    //mainManager.createNewPage();
+    double e=ui->energyLineEdit->text().toDouble();
+
+    PageButton *newButton=new PageButton(QString::number(e)+" keV "+QString::number(i+1));
+    newButton->setMinimumWidth(40);
+    newButton->setMaximumWidth(60);
+    newButton->page=i-1;
+    newButton->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
+    int &u=i;
+    connect(newButton, SIGNAL(clicked()),
+         newButton, SLOT (onClicked()));
+    connect(newButton, SIGNAL(onClick(int&)),
+         this, SLOT (sendedPageButton(int &)));
+
+    ui->pagesLayout->addWidget(newButton);
 }
 
 void MainWindow::fillApproxIntervalsOnSpinboxes(){
@@ -129,17 +149,32 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_loadFileButton_clicked()
 {
-    fileName = QFileDialog::getOpenFileName(this, tr("Open File"),"/home",tr("DATA (*)"));
-       QFile file(fileName);
+    QString fileN = QFileDialog::getOpenFileName(this, tr("Open File"),"/home",tr("DATA (*)"));
+       QFile file(fileN);
        if (!file.open(QIODevice::ReadOnly)) {
 
            return;
        }
+       mainManager.getExperimentalData(fileN);
+       mainManager.createNewPage();
        drawPlot();
+       drawPageButton();
 
 }
 
+
 void MainWindow::on_buildButton_clicked()
 {
+    drawAppox();
+}
+
+void MainWindow::pageButtonListener(){
+
+    //mainManager.setPage(u);
+    //drawPlot();
+    drawAppox();
+}
+void MainWindow::sendedPageButton(int &i){
+    mainManager.setPage(i);
     drawAppox();
 }

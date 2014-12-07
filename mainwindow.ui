@@ -25,6 +25,9 @@
      <enum>QLayout::SetNoConstraint</enum>
     </property>
     <item>
+     <layout class="QVBoxLayout" name="pagesLayout"/>
+    </item>
+    <item>
      <widget class="QCustomPlot" name="widget" native="true"/>
     </item>
     <item>
@@ -44,7 +47,7 @@
            <number>2</number>
           </property>
           <property name="maximum">
-           <double>999.990000000000009</double>
+           <double>99999.000000000000000</double>
           </property>
           <property name="singleStep">
            <double>1.000000000000000</double>
@@ -143,7 +146,7 @@
         <item>
          <widget class="QRadioButton" name="radioButton">
           <property name="text">
-           <string>withMagnet</string>
+           <string>с магнитом</string>
           </property>
          </widget>
         </item>
@@ -170,6 +173,27 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QRadioButton" name="radioButton_2">
+          <property name="text">
+           <string>исп. угол град</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_8">
         <item>
          <widget class="QLabel" name="label_6">
@@ -185,14 +209,14 @@
         <item>
          <widget class="QPushButton" name="loadFileButton">
           <property name="text">
-           <string>load file</string>
+           <string>загрузить</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="buildButton">
           <property name="text">
-           <string>build</string>
+           <string>построить</string>
           </property>
          </widget>
         </item>
