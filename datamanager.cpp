@@ -120,12 +120,20 @@ QVector <QPointF> DataManager::buildTeoriticalDataGaussFunc(QVector<QPointF> exp
 
 }
 
-void DataManager::createNewPage(){
-    navigator.savePage(gaussApproxes,experimentalData);
+void DataManager::createNewPage(double e){
+    navigator.savePage(gaussApproxes,experimentalData,e);
 
 }
 void DataManager::setPage(int page){
     gaussApproxes=navigator.getApproxData(page);
     experimentalData=navigator.getExpData(page);
+    energy=navigator.getEnergy(page);
+    navigator.currentPageCount=page;
+
+
+}
+
+void DataManager::refreshPage( double energy){
+    navigator.refreshPage(gaussApproxes,experimentalData,energy);
 }
 

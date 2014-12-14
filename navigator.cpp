@@ -3,12 +3,21 @@
 Navigator::Navigator()
 {
     pageCount=0;
+    currentPageCount=0;
 }
 
-void Navigator::savePage(QVector<GaussFunc> approx, QVector<QPointF> exp){
+void Navigator::savePage(QVector<GaussFunc> approx, QVector<QPointF> exp, double energy){
     approxDatas.append(approx);
     expDatas.append(exp);
+    energies.append(energy);
     pageCount++;
+}
+
+void Navigator::refreshPage(QVector<GaussFunc> approx, QVector<QPointF> exp,double energy){
+    approxDatas[currentPageCount]=approx;
+    expDatas[currentPageCount]=exp;
+    energies[currentPageCount]=energy;
+
 }
 
 QVector <GaussFunc> Navigator::getApproxData(int page){
@@ -19,5 +28,8 @@ QVector <GaussFunc> Navigator::getApproxData(int page){
 QVector <QPointF> Navigator::getExpData(int page){
     if(page>=expDatas.size()) return QVector <QPointF>();
     return expDatas[page];
+}
+double Navigator::getEnergy(int page){
+    return energies[page];
 }
 

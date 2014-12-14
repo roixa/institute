@@ -50,6 +50,8 @@ void MainWindow::drawAppox(){
     readApproxIntervalsFromSpinboxes();
     QVector<QPointF> experimentalPoints=mainManager.getExperimentalData();
     QVector<GaussFunc> funcs=mainManager.buildGaussApprox();
+    double e=ui->energyLineEdit->text().toDouble();
+    mainManager.refreshPage(e);
     showConsist(funcs);
     for (int i=0; i<funcs.size(); i++)
     {
@@ -94,33 +96,33 @@ void MainWindow::fillApproxIntervalsOnSpinboxes(){
     mainManager.filApproIntervals();
     QVector <QPointF> intervals=mainManager.approxIntervals;
     if(intervals.size()!=4)return;
-    ui->doubleSpinBox->setValue(intervals[0].x());
-    ui->doubleSpinBox_2->setValue(intervals[0].y());
-    ui->doubleSpinBox_3->setValue(intervals[1].x());
-    ui->doubleSpinBox_4->setValue(intervals[1].y());
-    ui->doubleSpinBox_5->setValue(intervals[2].x());
-    ui->doubleSpinBox_6->setValue(intervals[3].y());
-    ui->doubleSpinBox_7->setValue(intervals[3].x());
-    ui->doubleSpinBox_8->setValue(intervals[3].y());
+    ui->doubleSpinBox->setValue(intervals[0].x()*100);
+    ui->doubleSpinBox_2->setValue(intervals[0].y()*100);
+    ui->doubleSpinBox_3->setValue(intervals[1].x()*100);
+    ui->doubleSpinBox_4->setValue(intervals[1].y()*100);
+    ui->doubleSpinBox_5->setValue(intervals[2].x()*100);
+    ui->doubleSpinBox_6->setValue(intervals[3].y()*100);
+    ui->doubleSpinBox_7->setValue(intervals[3].x()*100);
+    ui->doubleSpinBox_8->setValue(intervals[3].y()*100);
 }
 
 void MainWindow::readApproxIntervalsFromSpinboxes(){
     QVector <QPointF> intervals;
     double x,y;
-    x=ui->doubleSpinBox->value();
-    y=ui->doubleSpinBox_2->value();
+    x=ui->doubleSpinBox->value()/100;
+    y=ui->doubleSpinBox_2->value()/100;
     intervals.append(QPointF(x,y));
 
-    x=ui->doubleSpinBox_3->value();
-    y=ui->doubleSpinBox_4->value();
+    x=ui->doubleSpinBox_3->value()/100;
+    y=ui->doubleSpinBox_4->value()/100;
     intervals.append(QPointF(x,y));
 
-    x=ui->doubleSpinBox_5->value();
-    y=ui->doubleSpinBox_6->value();
+    x=ui->doubleSpinBox_5->value()/100;
+    y=ui->doubleSpinBox_6->value()/100;
     intervals.append(QPointF(x,y));
 
-    x=ui->doubleSpinBox_7->value();
-    y=ui->doubleSpinBox_8->value();
+    x=ui->doubleSpinBox_7->value()/100;
+    y=ui->doubleSpinBox_8->value()/100;
     intervals.append(QPointF(x,y));
     mainManager.approxIntervals=intervals;
 }
@@ -155,8 +157,9 @@ void MainWindow::on_loadFileButton_clicked()
 
            return;
        }
+       double energy=ui->energyLineEdit->text().toDouble();
        mainManager.getExperimentalData(fileN);
-       mainManager.createNewPage();
+       mainManager.createNewPage(energy);
        drawPlot();
        drawPageButton();
 
@@ -166,6 +169,7 @@ void MainWindow::on_loadFileButton_clicked()
 void MainWindow::on_buildButton_clicked()
 {
     drawAppox();
+
 }
 
 void MainWindow::pageButtonListener(){
@@ -175,6 +179,8 @@ void MainWindow::pageButtonListener(){
     drawAppox();
 }
 void MainWindow::sendedPageButton(int &i){
+
     mainManager.setPage(i);
+
     drawAppox();
 }

@@ -57,7 +57,7 @@
         <item>
          <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
           <property name="maximum">
-           <double>999.990000000000009</double>
+           <double>99999.990000000005239</double>
           </property>
          </widget>
         </item>
@@ -75,7 +75,7 @@
         <item>
          <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
           <property name="maximum">
-           <double>999.990000000000009</double>
+           <double>99999.990000000005239</double>
           </property>
           <property name="singleStep">
            <double>1.000000000000000</double>
@@ -85,7 +85,7 @@
         <item>
          <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
           <property name="maximum">
-           <double>999.990000000000009</double>
+           <double>99999.990000000005239</double>
           </property>
          </widget>
         </item>
@@ -103,14 +103,14 @@
         <item>
          <widget class="QDoubleSpinBox" name="doubleSpinBox_5">
           <property name="maximum">
-           <double>999.990000000000009</double>
+           <double>99999.990000000005239</double>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QDoubleSpinBox" name="doubleSpinBox_6">
           <property name="maximum">
-           <double>999.990000000000009</double>
+           <double>99999.990000000005239</double>
           </property>
          </widget>
         </item>
@@ -128,14 +128,14 @@
         <item>
          <widget class="QDoubleSpinBox" name="doubleSpinBox_7">
           <property name="maximum">
-           <double>999.990000000000009</double>
+           <double>99999.990000000005239</double>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QDoubleSpinBox" name="doubleSpinBox_8">
           <property name="maximum">
-           <double>999.990000000000009</double>
+           <double>99999.990000000005239</double>
           </property>
          </widget>
         </item>
@@ -175,9 +175,9 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_9">
         <item>
-         <widget class="QRadioButton" name="radioButton_2">
+         <widget class="QCheckBox" name="checkBox">
           <property name="text">
-           <string>исп. угол град</string>
+           <string>Исп угол град</string>
           </property>
          </widget>
         </item>

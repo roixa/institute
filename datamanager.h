@@ -14,13 +14,15 @@ public:
     DataManager();
     Calculator calc;
     Navigator navigator;
+    double energy;
     QVector<QPointF> getExperimentalData(QString file);
     QVector<QPointF> getExperimentalData();
     QVector<QPointF> approxIntervals;//intervals when  gaussians approximate on the x axis
     QVector<GaussFunc> buildGaussApprox();
     void filApproIntervals();
-    void createNewPage();
+    void createNewPage(double e);
     void setPage(int page);
+    void refreshPage(double energy);
 
 private:
     QVector<QPointF> experimentalData;
